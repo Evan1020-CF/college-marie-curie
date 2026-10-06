@@ -2,30 +2,39 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion au PRONOTE du Collège Marie Curie</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background: #f4f4f9; color: #333; }
-        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; margin-top: 100px; background: #1e1e2e; color: #cdd6f4; }
+        .box { background: #252538; padding: 30px; border-radius: 12px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .loader { border: 4px solid #313244; border-top: 4px solid #89b4fa; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        h2 { color: #89b4fa; margin-bottom: 5px; }
+        p { color: #a6adc8; font-size: 14px; }
     </style>
 </head>
 <body>
-    <h2>Connexion sécurisée au PRONOTE...</h2>
-    <div class="loader"></div>
-    <p>Veuillez patienter quelques secondes.</p>
+    <div class="box">
+        <h2>Connexion au Collège Marie Curie</h2>
+        <div class="loader"></div>
+        <p>Vérification de la sécurité et redirection vers PRONOTE...</p>
+    </div>
 
     <script>
+        // URL complète et absolue vers ton PRONOTE localtunnel
         const tunnelUrl = "https://loca.lt";
 
-        // Déblocage automatique de la page anti-bot de LocalTunnel
+        // Injection du header secret pour bypass l'anti-bot
         fetch(tunnelUrl, {
             mode: "no-cors",
             headers: {
                 "bypass-tunnel-reminder": "true"
             }
         }).then(() => {
+            // Redirection immédiate dès que l'accès est validé
             window.location.href = tunnelUrl;
         }).catch(() => {
+            // Sécurité de secours si le fetch rencontre un problème d'origine
             window.location.href = tunnelUrl;
         });
     </script>
